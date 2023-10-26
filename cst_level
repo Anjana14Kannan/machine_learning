@@ -1,0 +1,24 @@
+df.drop(df.columns[[0,1]], axis=1, inplace=True)
+df.isnull().sum()
+
+df = df.drop('F_IN', axis=1)
+df.isnull().sum()
+
+df.drop(df.columns[df.columns.str.contains('unnamed', case=False)], axis=1, inplace=True)
+df.isnull().sum()
+
+df['ASSET_LEVEL'].unique()
+df['ASSET_LEVEL'] = df['ASSET_LEVEL'].replace('?', pd.NA)
+df.isnull().sum()
+df['ASSET_LEVEL'].unique()
+
+mode_value = df['ASSET_LEVEL'].mode()[0]
+df['ASSET_LEVEL'].fillna(mode_value, inplace=True)
+df.isnull().sum()
+
+df['EDUCATION_LEVEL'].unique()
+mean= df['EDUCATION_LEVEL'].mean()
+df['EDUCATION_LEVEL'].fillna(mean, inplace=True)
+df.isnull().sum()
+
+df['RATING_Q1'].unique()
